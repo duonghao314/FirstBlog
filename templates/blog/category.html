@@ -1,0 +1,26 @@
+{% extends 'template/baseTemp.html' %}
+{% load staticfiles %}
+{% block title %}
+    ĐườngHạo's Blog
+{% endblock %}
+{% block category %}
+    {% for cat in cats %}
+        <li class="cat-{{ cat.id }}"><a href="/{{ cat.catKey }}">{{ cat.catName }}</a></li>
+    {% endfor %}
+{% endblock %}
+{% block newestNews %}
+    {% for art in arts %}
+        <div class="col-md-6">
+            <div class="post post-thumb">
+                <a class="post-img" href="blog-post.html"><img src="{% static 'img/' %}{{ art.artDesImg }}" alt=""></a>
+                <div class="post-body">
+                    <div class="post-meta">
+                        <a class="post-category cat-{{ art.artCatID.id }}" href="category.html">{{ art.artCatID.catName }}</a>
+                        <span class="post-date">{{ art.artDateCreate }}</span>
+                    </div>
+                    <h3 class="post-title"><a href="blog-post.html">{{ art.artName }}</a></h3>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
